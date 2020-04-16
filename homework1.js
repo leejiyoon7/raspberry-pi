@@ -38,6 +38,7 @@ break;
 
 case 6: for (var i=0;i<3;i++) {
 	AllOn();
+	setTimeout(AllOff, 1000);
 }
 break;
 
@@ -52,7 +53,6 @@ const AllOn = function () {
 	gpio.digitalWrite(BLUE, 1);
 	gpio.digitalWrite(RED, 1);
 	console.log("Node: ALL on");
-	setTimeout(AllOff, 1000);
 }
 
 const AllOff = function () {
