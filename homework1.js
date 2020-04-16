@@ -41,7 +41,7 @@ case 6: for (i=0; i < 3; i++) {
       setTimeout(function() {
         AllOn();
       }, 2000*x);
-    })(i);
+    })(0);
   }
 break;
 
