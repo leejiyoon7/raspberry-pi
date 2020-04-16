@@ -52,7 +52,7 @@ const AllOn = function () {
 	gpio.digitalWrite(BLUE, 1);
 	gpio.digitalWrite(RED, 1);
 	console.log("Node: ALL on");
-	setTimeout(Alloff, 500);
+	setTimeout(AllOff, 500);
 }
 
 const AllOff = function () {
