@@ -4,8 +4,8 @@ const GREEN = 28; // 물리핀번호: 38
 const RED = 27; // 물리핀번호: 36
 var count = 0; // 순서를 카운팅하는 변수
 
-const TimeOutHandler = functon ( ) {
-switch (count % 4){
+const TimeOutHandler = functon () {
+switch (count % 7){
 case 0: gpio.digitalWrite (GREEN, 1); // 초록 on
 console.log("Node: GREEN on");
 break;
@@ -48,7 +48,7 @@ count++; // 순서증가
 setTimeout(TimeOutHandler, 1000); // 1초후 이벤트
 }
 
-const AllOn = function ( ) {
+const AllOn = function () {
 	gpio.digitalWrite(GREEN, 1);
 	gpio.digitalWrite(BLUE, 1);
 	gpio.digitalWrite(RED, 1);
@@ -56,7 +56,7 @@ const AllOn = function ( ) {
 	setTimeout(Alloff, 500);
 }
 
-const AllOff = function ( ) {
+const AllOff = function () {
 	gpio.digitalWrite(GREEN, 0);
 	gpio.digitalWrite(BLUE, 0);
 	gpio.digitalWrite(RED, 0);
