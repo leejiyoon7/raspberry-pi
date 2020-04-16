@@ -37,7 +37,7 @@ console.log("Node: ALL off");
 break;
 
 case 6: for (var i=0;i<3;i++) {
-	AllOn();
+	setTimeout(AllOn, 500);
 }
 break;
 
