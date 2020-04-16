@@ -10,36 +10,39 @@ case 0: gpio.digitalWrite (GREEN, 1); // 초록 on
 console.log("Node: GREEN on");
 break;
 
-case 1: gpio.digitalWrite (GREEN, 0); // 빨강off
-gpio.digitalWrite (BLUE, 1); // 초록on
+case 1: gpio.digitalWrite (GREEN, 0); // 파랑on
+gpio.digitalWrite (BLUE, 1); 
 console.log("Node: BLUE on");
 break;
 
 case 2: gpio.digitalWrite (GREEN, 1); // 청록색 on
-console.log("Node: BLUE GREEN on"); // 콘솔출력
+console.log("Node: BLUE GREEN on"); 
 break;
 
-case 3: gpio.digitalWrite(GREEN, 0);
+case 3: gpio.digitalWrite(GREEN, 0); //빨강 on
 gpio.digitalWrite(BLUE, 0);
 gpio.digitalWrite(RED, 1);
 console.log("Node: RED on");
 break;
 
-case 4: gpio.digitalWrite(GREEN, 1);
+case 4: gpio.digitalWrite(GREEN, 1); // 흰색 on
 gpio.digitalWrite(BLUE, 1);
 console.log("Node: ALL on");
 break;
 
-case 5: gpio.digitalWrite(GREEN, 0);
+case 5: gpio.digitalWrite(GREEN, 0); //모두 off
 gpio.digitalWrite(BLUE, 0);
 gpio.digitalWrite(RED, 0);
 console.log("Node: ALL off");
 break;
 
-case 6: for (var i=0;i<3;i++) {
-	AllOn();
-	setTimeout(AllOff, 1000);
-}
+case 6: for (i=0; i < 3; i++) {
+    (function(x) {
+      setTimeout(function() {
+        AllOn();
+      }, 2000*x);
+    })(i);
+  }
 break;
 
 default: break;
@@ -48,14 +51,15 @@ count++; // 순서증가
 setTimeout(TimeOutHandler, 1000); // 1초후 이벤트
 }
 
-const AllOn = function () {
+const AllOn = function () { //모두켜기
 	gpio.digitalWrite(GREEN, 1);
 	gpio.digitalWrite(BLUE, 1);
 	gpio.digitalWrite(RED, 1);
 	console.log("Node: ALL on");
+	setTimeout(AllOff, 1000);
 }
 
-const AllOff = function () {
+const AllOff = function () { //모두끄기
 	gpio.digitalWrite(GREEN, 0);
 	gpio.digitalWrite(BLUE, 0);
 	gpio.digitalWrite(RED, 0);
