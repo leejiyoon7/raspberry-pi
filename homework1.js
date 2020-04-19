@@ -39,7 +39,7 @@ break;
 default: break;
 }
 count++; // 순서증가
-if (count==6) {
+if (count==7) {
    count =0;
    function3();
    return 0;
