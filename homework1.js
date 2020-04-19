@@ -55,7 +55,7 @@ const function3 = function () {
     }, 2000*x);
   })(i);
 }
-setTimeout(TimeOutHandler,1000);
+setTimeout(TimeOutHandler,6000);
 }
 
 const AllOn = function () { //모두켜기
