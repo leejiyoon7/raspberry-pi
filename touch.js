@@ -15,4 +15,4 @@ process.exit();
 
 gpio.setup('wpi');
 gpio.pinMode(TOUCH, gpio.INPUT);
-setTimeout(CheckTouch, 50);
+setTimeout(CheckTouch, 200);
