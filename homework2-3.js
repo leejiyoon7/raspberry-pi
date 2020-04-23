@@ -25,8 +25,8 @@ const CheckTouch = function() {
 }
 
 const CheakLight = function() {
-	var LightData = gpio. digitalRead(LIGHT);
-	if(! LightData)
+	var LightData = gpio.digitalRead(LIGHT);
+	if (! LightData)
 		light1 = 1;
 	else
 		light2 = -1;
