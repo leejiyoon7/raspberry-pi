@@ -8,7 +8,7 @@ var count = 1;
 
 const CheckTouch = () => {
 	let TouchData = gpio.digitalRead(TOUCH);
-	if (!TouchData) {
+	if (TouchData) {
 		console.log("Touch! " + count);
 		if ((count++ % 2) == 1) {
 			gpio.digitalWrite(RED, 1); gpio.digitalWrite(BLUE, 0);
