@@ -4,7 +4,7 @@ const RED = 25; //물리핀번호 37
 const BLUE = 28; //물리핀번호 38
 const GREEN = 27; //물리핀번호 36
 const BUTTON = 24; //물리핀번호 35
-const LIGHT = 23; //물리핀번호 33
+const LIGHT = 7; //물리핀번호 7
 
 const CheckLight = function() {
 var Lightdata = gpio. digitalRead(LIGHT);
