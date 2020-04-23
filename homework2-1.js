@@ -1,7 +1,7 @@
 const gpio = require('node-wiring-pi');
 const BUZZER = 29; //물리핀번호 40
-const RED = 28; //물리핀번호 38
-const BLUE = 25; //물리핀번호 37
+const RED = 28; //물리핀번호 37
+const BLUE = 25; //물리핀번호 38
 const GREEN = 27; //물리핀번호 36
 const BUTTON = 24; //물리핀번호 35
 var count =1;
