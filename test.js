@@ -52,7 +52,6 @@ const CheckTouch = function() {
 process.on('SIGINT',function(){
         gpio.digitalWrite(RED,0);
         gpio.digitalWrite(BLUE,0);
-        gpio.digitalWrite(GREEN,0);
         gpio.digitalWrite(BUZZER,0);
         console.log("Program exit");
 });
