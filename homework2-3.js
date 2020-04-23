@@ -14,8 +14,19 @@ const CheckTouch = function() {
 		if ((count++ % 2) == 1) {
 			gpio.digitalWrite(RED, 1); gpio.digitalWrite(BLUE, 0);
 			console.log("Touch! 조도센서 활성화");
-			CheakLight();
-		}
+			do {
+				var LightData = gpio. digitalRead(LIGHT);
+				if(!LightData)
+					light1 = 1;
+				else
+					light2 = -1;
+				if((light1 - light2) == 2) {
+					console.log("조도센서 밝기변화 감지!");
+					BuzzerTurnOn();
+					light1,light2 = 0;
+					}
+				} while((count % 2) == 1);
+			}
 		else {
 			gpio.digitalWrite(RED, 0); gpio.digitalWrite(BLUE, 1);
 			console.log("Touch! 조도센서 비활성화");
@@ -24,28 +35,12 @@ const CheckTouch = function() {
 	setTimeout(CheckTouch,500);
 }
 
-const CheakLight = function() {
-	var LightData = gpio. digitalRead(LIGHT);
-	if(!LightData)
-		light1 = 1;
-	else
-		light2 = -1;
-	if((light1 - light2) == 2) {
-		console.log("조도센서 밝기변화 감지!");
-		BuzzerTurnOn();
-		light1,light2 = 0;
-	}
-	setTimeout (CheakLight,300);
-}
-
 const BuzzerTurnOn = function() {
 gpio.digitalWrite(BUZZER, 1);
-console.log("Nodejs: BUZZER on");
 setTimeout(BuzzerTurnOff, 100);
 }
 const BuzzerTurnOff = function() {
 gpio. digitalWrite(BUZZER, 0);
-console.log("Nodejs: BUZZER off");
 }
 
 process.on('SIGINT', function() {
