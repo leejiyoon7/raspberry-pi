@@ -7,7 +7,7 @@ const BUTTON = 24; //물리핀번호 35
 const LIGHT = 7; //물리핀번호 7
 
 const CheckLight = function() {
-var Lightdata = gpio. digitalRead(LIGHT);
+var Lightdata = gpio.digitalRead(LIGHT);
 	if (! Lightdata) {
 		console.log("Nodejs: Bright!!");
 		gpio.digitalWrite(RED, 0);
@@ -26,7 +26,7 @@ var Lightdata = gpio. digitalRead(LIGHT);
 			BuzzerTurnOn();
 		}
 	}
-	setTimeout(CheckLight, 500);
+	setTimeout(CheckLight, 1000);
 }
 
 const BuzzerTurnOn = function() {
@@ -55,4 +55,4 @@ gpio.pinMode(GREEN, gpio.OUTPUT);
 gpio.pinMode(BLUE, gpio.OUTPUT);
 gpio.pinMode(BUZZER, gpio.OUTPUT);
 gpio.pinMode(LIGHT, gpio.INPUT);
-setImmediate(CheckLight);
+setTimeout(CheckLight, 200);
