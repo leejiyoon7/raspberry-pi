@@ -8,25 +8,25 @@ const LIGHT = 23; //물리핀번호 33
 
 const CheckLight = function() {
 var Lightdata = gpio. digitalRead(LIGHT);
-if (! Lightdata) {
-	console.log("Nodejs: Bright!!");
-	gpio.digitalWrite(RED, 0);
-	gpio.digitalWrite(GREEN, 0);
-	gpio.digitalWrite(BLUE, 0);
-	}
+	if (! Lightdata) {
+		console.log("Nodejs: Bright!!");
+		gpio.digitalWrite(RED, 0);
+		gpio.digitalWrite(GREEN, 0);
+		gpio.digitalWrite(BLUE, 0);
+		}
 
-else {
-	console.log("Nodejs: Dark..");
-	gpio.digitalWrite(RED, 1);
-	gpio.digitalWrite(GREEN, 1);
-	gpio.digitalWrite(BLUE, 1);
-	let Buttondata = gpio.digitalRead(BUTTON);
-	if (! Buttondata) {
-		console.log("Pressed!");
-		BuzzerTurnOn();
+	else {
+		console.log("Nodejs: Dark..");
+		gpio.digitalWrite(RED, 1);
+		gpio.digitalWrite(GREEN, 1);
+		gpio.digitalWrite(BLUE, 1);
+		let Buttondata = gpio.digitalRead(BUTTON);
+		if (! Buttondata) {
+			console.log("Pressed!");
+			BuzzerTurnOn();
+		}
 	}
-setTimeout(CheckLight, 500);
-}
+	setTimeout(CheckLight, 500);
 }
 
 const BuzzerTurnOn = function() {
