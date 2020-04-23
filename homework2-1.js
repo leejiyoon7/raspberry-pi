@@ -35,7 +35,7 @@ const CheckButton = () => {
 const BuzzerTurnOn = function() {
 gpio.digitalWrite(BUZZER, 1);
 console.log("Nodejs: BUZZER on");
-setTimeout(TurnOff, 200);
+setTimeout(BuzzerTurnOff, 200);
 }
 const BuzzerTurnOff = function() {
 gpio. digitalWrite(BUZZER, 0);
