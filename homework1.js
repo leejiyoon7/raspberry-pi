@@ -5,7 +5,7 @@ const RED = 27; // 물리핀번호: 36
 var count = 0; // 순서를 카운팅하는 변수
 
 const TimeOutHandler = function () {
-switch (count % 6){
+switch (count % 7){
 case 0: gpio.digitalWrite (GREEN, 1); // 초록 on
 console.log("Node: GREEN on");
 break;
