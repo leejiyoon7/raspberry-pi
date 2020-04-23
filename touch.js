@@ -1,5 +1,5 @@
 const gpio = require('node-wiring-pi');
-const TOUCH = 23;
+const TOUCH = 7;
 
 const CheckTouch = function( ) {
 var data = gpio.digitalRead(TOUCH);
