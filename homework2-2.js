@@ -24,8 +24,9 @@ else {
 	if (! Buttondata) {
 		console.log("Pressed!");
 		BuzzerTurnOn();
-}
+	}
 setTimeout(CheckLight, 300);
+}
 }
 
 const BuzzerTurnOn = function() {
