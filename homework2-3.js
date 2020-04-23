@@ -9,12 +9,13 @@ var count = 1;
 const CheckTouch = () => {
 	let TouchData = gpio.digitalRead(TOUCH);
 	if (TouchData) {
-		console.log("Touch! " + count);
 		if ((count++ % 2) == 1) {
 			gpio.digitalWrite(RED, 1); gpio.digitalWrite(BLUE, 0);
+			console.log("Touch! 조도센서 활성화");
 		}
 		else {
 			gpio.digitalWrite(RED, 0); gpio.digitalWrite(BLUE, 1);
+			console.log("Touch! 조도센서 비활성화");
 		}
 	}
 	setTimeout(CheckTouch,300);

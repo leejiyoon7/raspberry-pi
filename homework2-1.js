@@ -6,7 +6,7 @@ const GREEN = 2; //물리핀번호 13
 const BUTTON = 7; //물리핀번호 7
 var count =1;
 
-const CheckButton = () => {
+const CheckButton = function() {
 	let data = gpio.digitalRead(BUTTON);
 	if (!data) {
 		console.log("Pressed! " + count);
