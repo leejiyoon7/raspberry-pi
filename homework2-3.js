@@ -14,7 +14,7 @@ const CheckTouch = function() {
 		if ((count++ % 2) == 1) {
 			gpio.digitalWrite(RED, 1); gpio.digitalWrite(BLUE, 0);
 			console.log("Touch! 조도센서 활성화");
-			CheakLight();
+			CheckLight();
 		}
 		else {
 			gpio.digitalWrite(RED, 0); gpio.digitalWrite(BLUE, 1);
@@ -24,7 +24,7 @@ const CheckTouch = function() {
 	setTimeout(CheckTouch,500);
 }
 
-const CheakLight = function() {
+const CheckLight = function() {
 	var LightData = gpio.digitalRead(LIGHT);
 	if (! LightData)
 		light1 = 1;
