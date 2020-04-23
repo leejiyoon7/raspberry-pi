@@ -19,7 +19,7 @@ const CheckTouch = () => {
 			count++;
 		}
 	}
-	setTimeout(CheckButton,300);
+	setTimeout(CheckTouch,300);
 }
 
 process.on('SIGINT', function() {
