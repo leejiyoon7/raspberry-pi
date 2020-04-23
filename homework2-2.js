@@ -55,4 +55,4 @@ gpio.pinMode(GREEN, gpio.OUTPUT);
 gpio.pinMode(BLUE, gpio.OUTPUT);
 gpio.pinMode(BUZZER, gpio.OUTPUT);
 gpio.pinMode(LIGHT, gpio.INPUT);
-setTimeout(CheckLight, 200);
+setImmediate(CheckLight);
