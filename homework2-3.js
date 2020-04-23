@@ -25,7 +25,7 @@ const CheckTouch = function() {
 					BuzzerTurnOn();
 					light1,light2 = 0;
 					}
-				} while((count % 2) == 1);
+				} while((count % 2) == 0);
 			}
 		else {
 			gpio.digitalWrite(RED, 0); gpio.digitalWrite(BLUE, 1);
