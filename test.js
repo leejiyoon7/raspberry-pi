@@ -1,69 +1,66 @@
 const gpio = require('node-wiring-pi');
-const BUTTON = 23;
-const BLUE = 27;
-const RED = 28;
-const GREEN = 29;
-const BUZZER = 26;
-const LIGHT = 31;
+const BUZZER = 21; //물리핀번호 29
+const RED = 0; //물리핀번호 11
+const BLUE = 3; //물리핀번호 15
+const TOUCH = 7; //물리핀번호 7
+const LIGHT = 22; //물리핀번호 31
+var count = 0;
+var change = 0;
+var change2 = 0;
 
-const CheckLight = function(){
-        gpio.digitalWrite(BLUE, 0);
-        gpio.digitalWrite(RED, 0);
-        gpio.digitalWrite(GREEN, 0);
-        var data = gpio.digitalRead(LIGHT);
-        if(!data){
-                console.log("Nodejs : Bright");
-                gpio.digitalWrite(BLUE, 0);
-                gpio.digitalWrite(RED, 0);
-                gpio.digitalWrite(GREEN, 0);
+const TurnOff = function() {
+        gpio. digitalWrite(BUZZER, 0);
+ }
+
+const CheckTouch = function() {
+        var data = gpio.digitalRead(TOUCH);
+        gpio.digitalWrite(BLUE,1);
+        var data2 = gpio.digitalRead(LIGHT);
+        var data3 = data2;
+        if(data){
+                count++;
         }
-        else{
-                console.log("Nodejs : Dark");
-                gpio.digitalWrite(BLUE, 1);
-                gpio.digitalWrite(RED, 1);
-                gpio.digitalWrite(GREEN, 1);
+        if (data && (count %2)==1){
+                console.log("Nodejs: START!");
+                gpio.digitalWrite(RED,1);
+                gpio.digitalWrite(BLUE,0);
+                
+              }
+        else if(!data && (count %2) == 1){
+                console.log("Nodejs:ing!");
+                gpio.digitalWrite(RED,1);
+                gpio.digitalWrite(BLUE,0);
+                data2 = gpio.digitalRead(LIGHT);
+                if(!data2)
+                        change = 1;
+                else
+                        change2 = -1;
+                if((change - change2) == 2){
+                      gpio.digitalWrite(BUZZER,1);
+                        setTimeout(TurnOff,300);
+                        change = 0;
+                        change2 = 0;
+                        }
+        }else {
+                console.log("Nodejs:stop!");
+                gpio.digitalWrite(RED,0);
+                gpio.digitalWrite(BLUE,1);
         }
-        setTimeout(CheckLight, 500);
-}
-
-const CheckButton = function(){
-        let data = gpio.digitalRead(BUTTON);
-        let B = gpio.digitalRead(BLUE);
-        let R = gpio.digitalRead(RED);
-        let G = gpio.digitalRead(GREEN);
-        if(!data){
-                if(B == 1 && R == 1 && G == 1){
-                        BuzzerOn();
-                }
-        }
-        setTimeout(CheckButton, 500);
-}
-
-const BuzzerOn = function(){
-        gpio.digitalWrite(BUZZER, 1);
-        setTimeout(BuzzerOff, 100);
-        console.log("Buzzer On");
-}
-
-const BuzzerOff = function(){
-        gpio.digitalWrite(BUZZER, 0);
-        console.log("Buzzer Off");
-}
-
-process.on('SIGINT', function(){
-        gpio.digitalWrite(BUZZER, 0);
-        gpio.digitalWrite(BLUE, 0);
-        gpio.digitalWrite(RED, 0);
-        gpio.digitalWrite(GREEN, 0);
-        console.log("Program Exit...");
-        process.exit();
+        setTimeout(CheckTouch,700);
+      }
+        
+process.on('SIGINT',function(){
+        gpio.digitalWrite(RED,0);
+        gpio.digitalWrite(BLUE,0);
+        gpio.digitalWrite(GREEN,0);
+        gpio.digitalWrite(BUZZER,0);
+        console.log("Program exit");
 });
 
 gpio.setup('wpi');
-gpio.pinMode(BUTTON, gpio.INPUT);
-gpio.pinMode(BLUE, gpio.OUTPUT);
-gpio.pinMode(RED, gpio.OUTPUT);
-gpio.pinMode(GREEN, gpio.OUTPUT);
-gpio.pinMode(BUZZER, gpio.OUTPUT);
-setImmediate(CheckButton);
-setImmediate(CheckLight);
+gpio.pinMode(TOUCH,gpio.INPUT);
+gpio.pinMode(LIGHT,gpio.INPUT);
+gpio.pinMode(BUZZER,gpio.OUTPUT);
+gpio.pinMode(BLUE,gpio.OUTPUT);
+gpio.pinMode(RED,gpio.OUTPUT);
+setTimeout(CheckTouch,10);
