@@ -29,7 +29,6 @@ const CheckButton = () => {
 			gpio.digitalWrite(GREEN, 1);
 			gpio.digitalWrite(BLUE, 0); 
 			BuzzerTurnOn();
-			count++;
 		}
 	}
 	setTimeout(CheckButton,300);
