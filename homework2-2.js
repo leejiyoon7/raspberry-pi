@@ -25,7 +25,7 @@ else {
 		console.log("Pressed!");
 		BuzzerTurnOn();
 	}
-setTimeout(CheckLight, 300);
+setTimeout(CheckLight, 500);
 }
 }
 
@@ -55,4 +55,4 @@ gpio.pinMode(GREEN, gpio.OUTPUT);
 gpio.pinMode(BLUE, gpio.OUTPUT);
 gpio.pinMode(BUZZER, gpio.OUTPUT);
 gpio.pinMode(LIGHT, gpio.INPUT);
-setImmediate(CheckLight);
+setTimeout(CheckLight, 200);
