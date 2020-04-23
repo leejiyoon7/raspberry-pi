@@ -26,7 +26,7 @@ var Lightdata = gpio.digitalRead(LIGHT);
 			BuzzerTurnOn();
 		}
 	}
-	setTimeout(CheckLight, 500);
+	setTimeout(CheckLight, 1000);
 }
 
 const BuzzerTurnOn = function() {
