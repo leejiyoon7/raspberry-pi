@@ -10,23 +10,26 @@ const CheckButton = () => {
 	let data = gpio.digitalRead(BUTTON);
 	if (!data) {
 		console.log("Pressed! " + count);
-		if ((count++ % 3) == 1) {
+		if ((count % 3) == 1) {
 			gpio.digitalWrite(RED, 0);
 			gpio.digitalWrite(GREEN, 0);
 			gpio.digitalWrite(BLUE, 1); 
 			BuzzerTurnOn();
+			count++;
 		}
-		else if ((count++ % 3) == 2){
+		else if ((count % 3) == 2){
 			gpio.digitalWrite(RED, 1);
 			gpio.digitalWrite(GREEN, 0);
 			gpio.digitalWrite(BLUE, 0); 
 			BuzzerTurnOn();
+			count++;
 		}
 		else {
 			gpio.digitalWrite(RED, 0);
 			gpio.digitalWrite(GREEN, 1);
 			gpio.digitalWrite(BLUE, 0); 
 			BuzzerTurnOn();
+			count++;
 		}
 	}
 	setTimeout(CheckButton,300);
