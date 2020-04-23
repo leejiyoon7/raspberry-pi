@@ -1,9 +1,9 @@
 const gpio = require('node-wiring-pi');
-const BUZZER = 29; //물리핀번호 40
-const RED = 25; //물리핀번호 37
-const BLUE = 28; //물리핀번호 38
-const GREEN = 27; //물리핀번호 36
-const BUTTON = 24; //물리핀번호 35
+const BUZZER = 21; //물리핀번호 29
+const RED = 0; //물리핀번호 11
+const BLUE = 3; //물리핀번호 15
+const GREEN = 2; //물리핀번호 13
+const BUTTON = 7; //물리핀번호 7
 var count =1;
 
 const CheckButton = () => {
