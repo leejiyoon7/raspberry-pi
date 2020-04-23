@@ -35,8 +35,8 @@ const CheakLight = function() {
 		BuzzerTurnOn();
 		light1,light2 = 0;
 	}
-	if((count % 2) == 1)
-	setTimeout (CheakLight,500);
+	if((count % 2) == 0)
+		setTimeout (CheakLight,500);
 	else
 		return 0;
 }
