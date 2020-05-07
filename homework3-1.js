@@ -20,7 +20,7 @@ setTimeout(CheakTouch,300)
 
 const CheckButton = function() {
 	let ButtonData = gpio.digitalRead(BUTTON);
-	if (ButtonData) {
+	if (! ButtonData) {
 		if ((count++ % 2) == 1) {
 			LedTurnOn();
 			BuzzerTurnOn();
