@@ -100,3 +100,4 @@ gpio.pinMode(RELAY, gpio.OUTPUT);
 gpio.pinMode(BUTTON, gpio.INPUT);
 console.log("터치(2색led 점멸) 클릭(첫번째:조도센서 활성화, 두번째:조도센서 비활성화)");
 setImmediate(CheckButton);
+setImmediate(CheakTouch);
