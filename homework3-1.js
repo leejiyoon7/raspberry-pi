@@ -53,9 +53,7 @@ if((count % 2) == 0)
 }
 
 const TwoLedTurnOn = function() {
-gpio.digitalWrite(RED, 1);
 gpio.digitalWrite(GREEN, 1);
-gpio.digitalWrite(BLUE, 1);
 setTimeout (TwoLedTurnOff,1000);
 }
 
@@ -100,6 +98,6 @@ gpio.pinMode(TOUCH, gpio.INPUT);
 gpio.pinMode(LIGHT, gpio.INPUT);
 gpio.pinMode(RELAY, gpio.OUTPUT);
 gpio.pinMode(BUTTON, gpio.INPUT);
-console.log("터치(2색led 점멸) 클릭(첫번째:조도센서 활성화, 두번째:조도센서 비활성화)");
+console.log("터치(GREEN 점멸) 클릭(첫번째:조도센서 활성화, 두번째:조도센서 비활성화)");
 setImmediate(CheckButton);
 setImmediate(CheakTouch);
