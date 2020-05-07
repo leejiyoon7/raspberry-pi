@@ -8,7 +8,7 @@ const LIGHT = 22; //물리핀번호 31
 const RELAY = 23; //물리핀번호 33
 const BUTTON = 24; //물리핀번호 35
 
-var count =1;
+var count =0;
 
 const CheakTouch = function() {
 	let TouchData = gpio.digitalRead(TOUCH);
@@ -47,7 +47,7 @@ console.log("Dark! 전류가 흐릅니다");
 gpio.digitalWrite(RELAY, gpio.HIGH);
 }
 if((count % 2) == 0)
-		setTimeout (CheakLight,1000);
+		setTimeout(CheckLight,1000);
 	else
 		return 0;
 }
