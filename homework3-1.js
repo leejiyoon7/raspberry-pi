@@ -14,6 +14,7 @@ const CheakTouch = function() {
 	let TouchData = gpio.digitalRead(TOUCH);
 	if(TouchData) {
 		TwoLedTurnOn();
+		console.log("터치되었습니다")
 	}
 setTimeout(CheakTouch,300)
 }
