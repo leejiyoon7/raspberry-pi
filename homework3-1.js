@@ -8,7 +8,7 @@ const LIGHT = 22; //물리핀번호 31
 const RELAY = 23; //물리핀번호 33
 const BUTTON = 24; //물리핀번호 35
 
-var count =0;
+var count =1;
 
 const CheakTouch = function() {
 	let TouchData = gpio.digitalRead(TOUCH);
