@@ -53,7 +53,9 @@ if((count % 2) == 0)
 }
 
 const TwoLedTurnOn = function() {
+gpio.digitalWrite(RED, 1);
 gpio.digitalWrite(GREEN, 1);
+gpio.digitalWrite(BLUE, 1);
 setTimeout (TwoLedTurnOff,1000);
 }
 
