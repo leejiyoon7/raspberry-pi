@@ -77,6 +77,7 @@ gpio. digitalWrite(BUZZER, 0);
 process.on('SIGINT', function() {
 gpio.digitalWrite(LED, 0);
 gpio. digitalWrite(BUZZER, 0);
+console.log("프로그램이 종료됩니다….");
 process.exit();
 });
 
