@@ -5,6 +5,7 @@ const TRIG = 27; //물리핀번호 36
 const ECHO = 28; //물리핀번호 38
 const BUTTON = 24; //물리핀번호 35
 
+var count =1;
 var startTime; // 초음파 송출시간
 var travelTime; // 초음파수신까지 경과시간
 
