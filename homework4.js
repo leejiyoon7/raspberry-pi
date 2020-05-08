@@ -39,7 +39,7 @@ distance = travelTime / 58;
 
 if (distance < 400) {
 console.log("근접거리: %i cm\n", distance);
-effect_led(distance);
+effect_Buzzer(distance);
 }
 if((count % 2) == 0)
 		setTimeout(Triggering, 200);
