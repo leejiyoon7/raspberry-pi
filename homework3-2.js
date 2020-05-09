@@ -6,7 +6,7 @@ var chatteringTimer = 100;
 var chatteringCount  = 0;
 var keyState = 1;
 
-const loop = function() {
+const Loop = function() {
  let data = gpio.digitalRead(BUTTON);
 
   if(!data){
@@ -38,4 +38,4 @@ gpio.wiringPiSetup();
 gpio.pinMode(BUTTON, gpio.INPUT);
 gpio.pinMode(LED, gpio.OUTPUT);
 console.log("이벤트방식: 버튼을 누르면 LED가 켜집니다.....");
-gpio.wiringPiISR(BUTTON, gpio.INT_EDGE_RISING, loop);
+gpio.wiringPiISR(BUTTON, gpio.INT_EDGE_RISING, Loop);
