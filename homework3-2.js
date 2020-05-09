@@ -3,20 +3,14 @@ const BUTTON = 24;
 const LED = 2;
 
 const DetectButton = function(){
-        var data = gpio.digitalRead(BUTTON);
-        if(!data){
-                data = true;
-                gpio.delay(500);
-                gpio.digitalWrite(LED,1);
-                gpio.delay(500);
-                gpio.digitalWrite(LED,0);
-                }
-        else {
-                data = false;
-                gpio.digitalWrite(LED,0);
-                gpio.delay(500);
-                }
-}
+        var data1 = gpio.digitalRead(BUTTON);
+        gpio.delay(100);
+        var data2 = gpio.digitalRead(BUTTON);
+        if(data1 == data2) {
+        	gpio.digitalWrite(LED, 1);
+        	gpio.delay(50);
+        	gpio.digitalWrite(LED, 0);
+        }
 
 process.on('SIGINT', function() {
 gpio.digitalWrite(LED, 0);
