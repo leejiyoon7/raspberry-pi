@@ -11,6 +11,7 @@ const DetectButton = function(){
         	gpio.delay(50);
         	gpio.digitalWrite(LED, 0);
         }
+    }
 
 process.on('SIGINT', function() {
 gpio.digitalWrite(LED, 0);
