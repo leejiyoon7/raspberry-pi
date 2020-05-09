@@ -2,14 +2,11 @@ const gpio = require('node-wiring-pi');
 const BUTTON = 24;
 const LED = 2;
 
-var chatteringTimer = 100;
-var chatteringCount  = 0;
-var keyState = 1;
-
 const DetectButton = function(){
         var data = gpio.digitalRead(BUTTON);
         if(!data){
                 data = true;
+                gpio.delay(500);
                 gpio.digitalWrite(LED,1);
                 gpio.delay(500);
                 gpio.digitalWrite(LED,0);
