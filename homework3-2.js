@@ -4,7 +4,7 @@ const LED = 2;
 
 const DetectButton = function(){
         var data1 = gpio.digitalRead(BUTTON);
-        gpio.delay(100);
+        gpio.delay(200);
         var data2 = gpio.digitalRead(BUTTON);
         if(data1 == data2) {
         	gpio.digitalWrite(LED, 1);
