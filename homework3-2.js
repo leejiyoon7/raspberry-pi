@@ -27,6 +27,7 @@ const DetectButton = function() {
     		keyState = data;
     	}
     }
+}
 
 process.on('SIGINT', function() {
 gpio.digitalWrite(LED, 0);
