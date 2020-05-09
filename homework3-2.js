@@ -4,13 +4,13 @@ const LED = 2;
 
 var chatteringTimer = 100;
 var chatteringCount  = 0;
-var keyState = HIGH;
+var keyState = 1;
 
 const DetectButton = function() {
  let data = gpio.digitalRead(BUTTON);
 
-  if(data == LOW){
-    if(keyState == HIGH){
+  if(data == 0){
+    if(keyState == 1){
       if(chatteringCount == 0){
         chatteringCount  = chatteringTimer;
         gpio.digitalWrite(LED, 1);
@@ -22,7 +22,7 @@ const DetectButton = function() {
  	}
 }
     else {
-    	if(keyState == LOW) {
+    	if(keyState == 0) {
     		gpio.digitalWrite(LED, 0);
     		keyState = data;
     	}
