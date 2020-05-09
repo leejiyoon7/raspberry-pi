@@ -6,27 +6,19 @@ var chatteringTimer = 100;
 var chatteringCount  = 0;
 var keyState = 1;
 
-const DetectButton = function() {
- let data = gpio.digitalRead(BUTTON);
-
-  if(data == 0){
-    if(keyState == 1){
-      if(chatteringCount == 0){
-        chatteringCount  = chatteringTimer;
-        gpio.digitalWrite(LED, 1);
-        keyState = data;
-     	}
-  		else {
-  		chatteringCount--;
-  		}
- 	}
-}
-    else {
-    	if(keyState == 0) {
-    		gpio.digitalWrite(LED, 0);
-    		keyState = data;
-    	}
-    }
+const DetectButton = function(){
+        var data = gpio.digitalRead(BUTTON);
+        if(!data){
+                data = true;
+                gpio.digitalWrite(LED,1);
+                gpio.delay(500);
+                gpio.digitalWrite(LED,0);
+                }
+        else {
+                data = false;
+                gpio.digitalWrite(LED,0);
+                gpio.delay(500);
+                }
 }
 
 process.on('SIGINT', function() {
