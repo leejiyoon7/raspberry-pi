@@ -19,16 +19,16 @@ const server=http.createServer(function(request,response) {
     gpio.pinMode(ECHO,gpio.INPUT);
     gpio.pinMode(TRIG,gpio.OUTPUT);
     gpio.digitalWrite(LED,0);//LED초기화  
-    console.log('Serverrunningathttp://IP주소:65001');  
+    console.log('Server running at http://IP주소:65001');  
 });
 
 const io=socketio.listen(server); 
 io.sockets.on('connection',function(socket){
 	socket.on('startmsg',function(data){  
-		console.log('가동메시지수신(측정주기:%d)!',data);  
+		console.log('가동 메시지수신(측정주기:%d)!',data);  
 		timeout=data;  watchon();//타이머가동(초음파가동)  
 	});  socket.on('stopmsg',function(data){  
-		console.log('중지메시자수신!');  
+		console.log('중지 메시지수신!');  
 		clearTimeout(timerid);  
 	});  
 });
