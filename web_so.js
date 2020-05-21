@@ -8,7 +8,7 @@ var index=0,value=[];//측정거리데이터저장용
 var timerid,timeout=800;//타이머제어용  
 var cnt=1;//타이머제어용  
 
-constserver=http.createServer(function(request,response) {
+const server=http.createServer(function(request,response) {
   	fs.readFile('views/web_so.html','utf8',function(error,data){  
   	response.writeHead(200,{'Content-Type':'text/html'});
   	response.end(data); 
@@ -22,7 +22,7 @@ constserver=http.createServer(function(request,response) {
     console.log('Serverrunningathttp://IP주소:65001');  
 });
 
-constio=socketio.listen(server); 
+const io=socketio.listen(server); 
 io.sockets.on('connection',function(socket){
 	socket.on('startmsg',function(data){  
 		console.log('가동메시지수신(측정주기:%d)!',data);  
