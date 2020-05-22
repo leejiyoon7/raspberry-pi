@@ -19,6 +19,6 @@ process.on('SIGINT', function() {
     process.exit();
 });
 
-gpio.setup('wpi');
+gpio.wiringPiSetup();
 gpio.pinMode(LED, gpio.OUTPUT);
 setTimeout(ON,100);
