@@ -36,7 +36,7 @@ const CheckLight = function() {
 		light1,light2 = 0;
 	}
 	if((count % 2) == 0)
-		setTimeout (CheckLight,1000);
+		setTimeout (CheakLight,1000);
 	else
 		return 0;
 }
