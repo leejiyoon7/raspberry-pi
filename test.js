@@ -4,13 +4,13 @@ const LED = 2;
 const ON = function () {
     gpio.digitalWrite(LED,1);
     console.log("LED ON");
-    settimeout(OFF,1000);
+    setTimeout(OFF,1000);
 }
 
 const OFF = function () {
     gpio.digitalWrite(LED,0);
     console.log("LED OFF");
-    settimeout(ON,1000);
+    setTimeout(ON,1000);
 }
 
 process.on('SIGINT', function() {
