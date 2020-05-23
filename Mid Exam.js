@@ -44,7 +44,7 @@ const checklight = function() {
 
 const checktouch = function() {
 	var touchdata = gpio.digitalRead(TOUCH);
-	if(!lightdata)
+	if(!touchdata)
 		gpio.wiringPiISR(TOUCH,INT_EDGE_FALLING,checktouch);
 
 	if(count % 2 == 1)
