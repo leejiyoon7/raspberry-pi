@@ -26,6 +26,7 @@ const checkbutton = function() {
 			checktouch();
 		}
 	}
+	setTimeout(checkbutton,200);
 }
 
 const checklight = function() {
