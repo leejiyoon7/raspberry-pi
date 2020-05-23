@@ -11,6 +11,7 @@ gpio.delayMicroseconds(2)
 gpio.digitalWrite (TRIG, gpio.HIGH);
 gpio.delayMicroseconds(20)
 gpio.digitalWrite (TRIG, gpio.LOW);
+
 while(gpio.digitalRead(ECHO) == gpio.LOW) ;
 startTime = gpio.micros();
 while(gpio.digitalRead(ECHO) == gpio.HIGH) ;
@@ -24,7 +25,7 @@ effect_led(distance);
 setTimeout(Triggering, 200);
 }
 
-const effect_led = (dis) => {
+const effect_led = function(dis) {
 if ( dis < 5) gpio.softPwmWrite(LED, 100);
 else if (dis >= 5 && dis < 10) gpio.softPwmWrite(LED, 60);
 else if (dis >= 10 && dis < 20) gpio.softPwmWrite(LED, 40);
