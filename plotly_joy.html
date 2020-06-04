@@ -8,8 +8,8 @@
 	        window.onload = function () {
                 var socket = io.connect(); // 소켓생성
                 var widthcount = 1;
-                socket.on('watch', function (xdata, ydata) { // 조이스틱실시간수신
-                    	Plotly.extendTraces('chart', { y: [ [xdata], [ydata] ] }, [0, 1]);
+                socket.on('watch', function (ydata) { // 조이스틱실시간수신
+                    	Plotly.extendTraces('chart', { y: [ [ydata] ] }, [1]);
                 	widthcount++; // 그래프데이터 카운트
                 	if (widthcount > 100) { // 100이상일경우 챠트동적이동
                     	Plotly.relayout('chart', {
@@ -41,11 +41,9 @@ socket.emit('stopmsg', text);
 <hr>
 <div id="chart">
 <script>
-var joyx = { y:[0], name:'JoyX', type: 'line',
-marker:{color:"rgb(255,0,0)"}, line: {shape:'spline'}};
 var joyy = { y:[0], name:'JoyY', type: 'line',
 marker:{color:"rgb(0,0,255)"}, line: {shape:'spline'}};
-var data = [joyx, joyy];
+var data = [joyy];
 Plotly.plot('chart', data);
 </script>
 </div>
