@@ -68,8 +68,7 @@ const JoyStick = ( ) => {
 	timerid = setTimeout(JoyStick, timeout);
 }
 
-process.on('SIGINT', () => {
-	joyx.close(() => { // mcp3208 연결해제
+process.on('SIGINT', () => { // mcp3208 연결해제
 		joyy.close(() => {
 			console.log('MCP-ADC가 해제되어,웹서버를 종료합니다');
 			console.log('LED를 끄고 프로그램을 종료합니다.');
@@ -79,7 +78,6 @@ process.on('SIGINT', () => {
 			process.exit();
 		});
 	});
-});
 
 const serverbody = (request, response) => {
 	fs.readFile('views/plotly_joy.html', 'utf8', (err, data) => {
@@ -107,7 +105,11 @@ io.sockets.on('connection', function (socket) {
 server.listen(60001, () => {
 	gpio.wiringPiSetup();
 	gpio.pinMode(CS_MCP3208, gpio.OUTPUT);
+	gpio.pinMode(JOYBUTTON, gpio.INPUT);
 	gpio.pullUpDnControl(JOYBUTTON,gpio.PUD_UP);
+	gpio.pinMode(RED, gpio.OUTPUT);
+	gpio.pinMode(GREEN, gpio.OUTPUT);
+	gpio.pinMode(BLUE, gpio.OUTPUT);
 	console.log('-----------------------------------------');
 	console.log('조이스틱 제어용 웹서버');
 	console.log("웹브라우져 접속주소 : http://IP주소:60001/");
