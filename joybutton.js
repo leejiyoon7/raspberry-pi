@@ -35,6 +35,7 @@ const JoyStickCheckButton = ( ) => {
 		gpio.digitalWrite(BLUE, 1);
 		JoyStick();
 	}
+	
 	setTimeout(JoyStickCheckButton,300);
 }
 
@@ -111,7 +112,7 @@ io.sockets.on('connection', function (socket) {
 server.listen(60002, () => {
 	gpio.wiringPiSetup();
 	gpio.pinMode(CS_MCP3208, gpio.OUTPUT);
-	gpio.pinMode(JOYBUTTON, gpio.INPUT);
+
 	gpio.pullUpDnControl(JOYBUTTON,gpio.PUD_UP);
 	gpio.pinMode(RED, gpio.OUTPUT);
 	gpio.pinMode(GREEN, gpio.OUTPUT);
