@@ -14,6 +14,13 @@ var timerid, timeout=800; // 타이머제어용
 var yvalue = -1; // JoyStick X,Y 측정데이터 저장용
 var count =1;
 
+const joyy = mcpadc.openMcp3208(VRY, // 채널1 지정 (Y좌표)
+{ speedHz: SPI_SPEED }, // Clock속도 지정
+(err) => { // Callback함수 등록
+console.log("SPI 채널1 초기화완료!");
+if (err) console.log('채널1 초기화실패!(HW점검!)');
+});
+
 const JoyStickCheckButton = ( ) => {
 	let checkButtonData = gpio.digitalRead(JOYBUTTON);
 	if (! checkButtonData) {
