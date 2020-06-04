@@ -70,7 +70,7 @@ const JoyStick = ( ) => {
 			lightvalue = 1;
 		}
 	}
-	if else(xvalue>3700) {
+	if(xvalue>3700) {
 		lightvalue = lightvalue + 5;
 		if(lightvalue > 100) {
 			console.log("빛의 세기는 100보다 클 수 없습니다.")
