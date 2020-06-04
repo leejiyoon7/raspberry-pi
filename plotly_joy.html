@@ -41,11 +41,11 @@ socket.emit('stopmsg', text);
 <hr>
 <div id="chart">
 <script>
-	var joyx = { y:[0], name:'JoyX', type: 'line',
+var joyx = { y:[0], name:'JoyX', type: 'line',
 marker:{color:"rgb(255,0,0)"}, line: {shape:'spline'}};
 var joyy = { y:[0], name:'JoyY', type: 'line',
 marker:{color:"rgb(0,0,255)"}, line: {shape:'spline'}};
-var data = [joyy];
+var data = [joyx, joyy];
 Plotly.plot('chart', data);
 </script>
 </div>
