@@ -51,42 +51,40 @@ const JoyStick = ( ) => {
 		yvalue = reading.rawValue;
 	});
 
-	if(yvalue<300 || yvalue >3700) {
+	if(yvalue < 300 || yvalue > 3700)
 		count ++;
-	}
 
-	if(xvalue<300){
-		lightvalue = lightvalue - 5;
-		if(lightvalue < 1) {
-			console.log("빛의 세기는 1보다 낮을 수 없습니다.");
-			lightvalue = 1;
+	if(xvalue < 300 || xvalue > 3700){
+		if(xvalue < 300){
+			lightvalue = lightvalue - 5;
+			if(lightvalue < 1) {
+				console.log("빛의 세기는 1보다 낮을 수 없습니다.");
+				lightvalue = 1;
+			}
+		}
+		else if(xvalue>3700) {
+			lightvalue = lightvalue + 5;
+			if(lightvalue > 100) {
+				console.log("빛의 세기는 100보다 클 수 없습니다.");
+				lightvalue = 100;
+			}
 		}
 	}
-	else if(xvalue>3700) {
-		lightvalue = lightvalue + 5;
-		if(lightvalue > 100) {
-			console.log("빛의 세기는 100보다 클 수 없습니다.");
-			lightvalue = 100;
-		}
-	}
-
+	
 	if ((count % 3) == 1) {
 		gpio.digitalWrite(RED, 0);
 		gpio.digitalWrite(GREEN, 0);
 		gpio.digitalWrite(BLUE, lightvalue); 
-		count++;
 	}
 	else if ((count % 3) == 2){
 		gpio.digitalWrite(RED, lightvalue);
 		gpio.digitalWrite(GREEN, 0);
 		gpio.digitalWrite(BLUE, 0); 
-		count++;
 	}
 	else {
 		gpio.digitalWrite(RED, 0);
 		gpio.digitalWrite(GREEN, lightvalue);
-		gpio.digitalWrite(BLUE, 0); 
-		count++;
+		gpio.digitalWrite(BLUE, 0);
 	}
 
 
