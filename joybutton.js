@@ -45,7 +45,7 @@ const JoyStick = ( ) => {
 		yvalue = reading.rawValue;
 	});
 
-	if(yvalue<50 || yvalue >4800) {
+	if(yvalue<50 || yvalue >4000) {
 		if ((count % 3) == 1) {
 			gpio.digitalWrite(RED, 0);
 			gpio.digitalWrite(GREEN, 0);
