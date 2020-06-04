@@ -109,7 +109,7 @@ process.on('SIGINT', () => {
 });
 
 const serverbody = (request, response) => {
-	fs.readFile('views/plotly_joy.html', 'utf8', (err, data) => {
+	fs.readFile('error.html', 'utf8', (err, data) => {
 		response.writeHead(200, { 'Content-Type': 'text/html' });
 		response.end(data);
 	});
