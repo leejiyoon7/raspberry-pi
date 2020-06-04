@@ -50,6 +50,7 @@ const JoyStick = ( ) => {
 			gpio.digitalWrite(RED, 0);
 			gpio.digitalWrite(GREEN, 0);
 			gpio.digitalWrite(BLUE, 1); 
+			count++;
 		}
 		else if ((count % 3) == 2){
 			gpio.digitalWrite(RED, 1);
@@ -65,9 +66,9 @@ const JoyStick = ( ) => {
 		}
 	}
 
-	if (yvalue != -1){ // y값 읽었다면
-		io.sockets.emit('watch', yvalue);
-		yvalue = -1;
+	if (xvalue != -1 && yvalue != -1){ // x값, y값 모두 읽었다면
+		io.sockets.emit('watch', xvalue, yvalue);
+		xvalue = yvalue = -1;
 	}
 
 	timerid = setTimeout(JoyStick, timeout);
