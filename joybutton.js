@@ -111,7 +111,7 @@ io.sockets.on('connection', function (socket) {
 	});
 });
 
-server.listen(60001, () => {
+server.listen(60002, () => {
 	gpio.wiringPiSetup();
 	gpio.pinMode(CS_MCP3208, gpio.OUTPUT);
 	gpio.pinMode(JOYBUTTON, gpio.INPUT);
