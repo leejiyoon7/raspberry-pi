@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+			<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+	        window.onload = function () {
+                var socket = io.connect(); // 소켓생성
+                var widthcount = 1;
+                socket.on('watch', function (xdata, ydata) { // 조이스틱실시간수신
+                    	Plotly.extendTraces('chart', { y: [ [xdata], [ydata] ] }, [0, 1]);
+                	widthcount++; // 그래프데이터 카운트
+                	if (widthcount > 100) { // 100이상일경우 챠트동적이동
+                    	Plotly.relayout('chart', {
+                        	xaxis: {
+                            	range: [widthcount-99, widthcount] // x축 동적이동
+                        	}
+                    	});
+                	}
+            	});
+
+// 문서 객체 이벤트 연결
+document.getElementById('start').onclick = function () {
+var text = document.getElementById('text').value;
+socket.emit('startmsg', text);
+};
+document.getElementById('stop').onclick = function () {
+var text = document.getElementById('text').value;
+socket.emit('stopmsg', text);
+};
+};
+</script>
+</head>
+<body>
+<h2> 조이스틱측정 </h3>
+<hr>
+<input type="text" id="text" value="800" />ms (예, 500~1000ms)
+<input type="button" id="start" value="조이스틱센서 측정가동" />
+<input type="button" id="stop" value="조이스틱센서 측정중지" />
+<hr>
+<div id="chart">
+<script>
+var joyx = { y:[0], name:'JoyX', type: 'line',
+marker:{color:"rgb(255,0,0)"}, line: {shape:'spline'}};
+var joyy = { y:[0], name:'JoyY', type: 'line',
+marker:{color:"rgb(0,0,255)"}, line: {shape:'spline'}};
+var data = [joyx, joyy];
+Plotly.plot('chart', data);
+</script>
+</div>
+</body>
+</html>
