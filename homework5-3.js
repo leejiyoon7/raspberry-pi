@@ -10,11 +10,12 @@ const BLUE = 29;
 const CS_MCP3208 = 10 // Chip Enable(CE0) is set
 const VRX = 0 // ADC 0번째 채널선택=아날로그센서
 const VRY = 1 // ADC 1번째 채널선택=아날로그센서
+const LIGHT =2 //ADC 2번째 채널선택=아날로그센서
 const SPI_SPEED = 1000000 // Clock Speed = 1Mhz
 var timerid, timeout=800; // 타이머제어용
-var xvalue = yvalue = -1; // JoyStick X,Y 측정데이터 저장용
+var xvalue = yvalue = lightvalue = -1; // JoyStick X,Y ,밝기 측정데이터 저장용
 var count = 0;
-var lightvalue = 50;
+var brightness = 50;
 
 const joyx = mcpadc.openMcp3208(VRX, // 채널0 지정 (X좌표)
 { speedHz: SPI_SPEED }, // Clock속도 지정
@@ -30,17 +31,24 @@ console.log("SPI 채널1 초기화완료!");
 if (err) console.log('채널1 초기화실패!(HW점검!)');
 });
 
+const lightData = mcpadc.openMcp3208(LIGHT, // 채널2 지정 (밝기)
+{ speedHz: SPI_SPEED }, // Clock속도 지정
+(err) => { // Callback함수 등록
+console.log("SPI 채널2 초기화완료!");
+if (err) console.log('채널2 초기화실패!(HW점검!)');
+});
+
 const JoyStickCheckButton = ( ) => {
 	let checkButtonData = gpio.digitalRead(JOYBUTTON);
 	if (! checkButtonData) {
 		console.log("버튼이 눌렸습니다. 측정시작");
 		gpio.softPwmWrite(BLUE, 50);
-		JoyStick();
+		JoyStick_Light();
 	}
 	setTimeout(JoyStickCheckButton,300);
 }
 
-const JoyStick = ( ) => {
+const JoyStick_Light = ( ) => {
 
 	joyx.read((error, reading)=> {
 		console.log(" ▲ ▼ (%d)", reading.rawValue);
@@ -52,44 +60,49 @@ const JoyStick = ( ) => {
 		yvalue = reading.rawValue;
 	});
 
+	lightData.read((error, reading)=> {
+		console.log("  (%d)", reading.rawValue);
+		lightvalue = reading.rawValue;
+	});
+
 	if(yvalue < 300 || yvalue > 3700)
 		count ++;
 
 	if(xvalue < 300){
-		lightvalue = lightvalue - 10;
-		if(lightvalue < 1) {
+		brightness = brightness - 10;
+		if(brightness < 1) {
 			console.log("빛의 세기는 1보다 낮을 수 없습니다.");
-			lightvalue = 1;
+			brightness = 1;
 		}
 	}
 	else if(xvalue>3700) {
-		lightvalue = lightvalue + 10;
-		if(lightvalue > 100) {
+		brightness = brightness + 10;
+		if(brightness > 100) {
 			console.log("빛의 세기는 100보다 클 수 없습니다.");
-			lightvalue = 100;
+			brightness = 100;
 		}
 	}
 
 	if ((count % 3) == 1) {
 		gpio.softPwmWrite(RED, 0);
 		gpio.softPwmWrite(GREEN, 0);
-		gpio.softPwmWrite(BLUE, lightvalue); 
+		gpio.softPwmWrite(BLUE, brightness); 
 	}
 	else if ((count % 3) == 2){
-		gpio.softPwmWrite(RED, lightvalue);
+		gpio.softPwmWrite(RED, brightness);
 		gpio.softPwmWrite(GREEN, 0);
 		gpio.softPwmWrite(BLUE, 0); 
 	}
 	else {
 		gpio.softPwmWrite(RED, 0);
-		gpio.softPwmWrite(GREEN, lightvalue);
+		gpio.softPwmWrite(GREEN, brightness);
 		gpio.softPwmWrite(BLUE, 0);
 	}
 
 
-	if (xvalue != -1 && yvalue != -1){ // x값, y값 모두 읽었다면
-		io.sockets.emit('watch', xvalue, yvalue);
-		xvalue = yvalue = -1;
+	if (xvalue != -1 && yvalue != -1 && lightvalue != -1){
+		io.sockets.emit('watch', xvalue, yvalue, lightvalue);
+		xvalue = yvalue = lightvalue = -1;
 	}
 
 	timerid = setTimeout(JoyStick, timeout);
@@ -98,12 +111,14 @@ const JoyStick = ( ) => {
 process.on('SIGINT', () => {
 	joyx.close(() => { // mcp3208 연결해제
 		joyy.close(() => {
-			console.log('MCP-ADC가 해제되어,웹서버를 종료합니다');
-			console.log('LED를 끄고 프로그램을 종료합니다.');
-			gpio.softPwmWrite(RED, 0);
-			gpio.softPwmWrite(GREEN, 0);
-			gpio.softPwmWrite(BLUE, 0);
-			process.exit();
+			lightData.close(() => {
+				console.log('MCP-ADC가 해제되어,웹서버를 종료합니다');
+				console.log('LED를 끄고 프로그램을 종료합니다.');
+				gpio.softPwmWrite(RED, 0);
+				gpio.softPwmWrite(GREEN, 0);
+				gpio.softPwmWrite(BLUE, 0);
+				process.exit();
+			});
 		});
 	});
 });
