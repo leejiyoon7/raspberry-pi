@@ -12,7 +12,7 @@ const VRX = 0 // ADC 0번째 채널선택=아날로그센서
 const VRY = 1 // ADC 1번째 채널선택=아날로그센서
 const SPI_SPEED = 1000000 // Clock Speed = 1Mhz
 var timerid, timeout=800; // 타이머제어용
-var yvalue = -1; // JoyStick X,Y 측정데이터 저장용
+var xvalue = yvalue = -1; // JoyStick X,Y 측정데이터 저장용
 var count = 1;
 var lightvalue =50;
 
