@@ -13,7 +13,7 @@ const VRY = 1 // ADC 1번째 채널선택=아날로그센서
 const SPI_SPEED = 1000000 // Clock Speed = 1Mhz
 var timerid, timeout=800; // 타이머제어용
 var xvalue = yvalue = -1; // JoyStick X,Y 측정데이터 저장용
-var count = 1;
+var count = 0;
 var lightvalue = 50;
 
 const joyx = mcpadc.openMcp3208(VRX, // 채널0 지정 (X좌표)
