@@ -136,9 +136,9 @@ server.listen(60002, () => {
 	gpio.wiringPiSetup();
 	gpio.pinMode(CS_MCP3208, gpio.OUTPUT);
 	gpio.pullUpDnControl(JOYBUTTON,gpio.PUD_UP);
-	gpio.softPwmCreate(RED, 1, 100);
-	gpio.softPwmCreate(GREEN, 1, 100);
-	gpio.softPwmCreate(BLUE, 1, 100);
+	gpio.softPwmCreate(RED, 0, 100);
+	gpio.softPwmCreate(GREEN, 0, 100);
+	gpio.softPwmCreate(BLUE, 0, 100);
 	console.log('-----------------------------------------');
 	console.log('조이스틱 제어용 웹서버');
 	console.log("웹브라우져 접속주소 : http://IP주소:60002/");
