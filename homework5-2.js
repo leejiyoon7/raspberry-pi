@@ -70,7 +70,7 @@ const JoyStick = ( ) => {
 			}
 		}
 	}
-	
+
 	if ((count % 3) == 1) {
 		gpio.digitalWrite(RED, 0);
 		gpio.digitalWrite(GREEN, 0);
@@ -96,7 +96,8 @@ const JoyStick = ( ) => {
 	timerid = setTimeout(JoyStick, timeout);
 }
 
-process.on('SIGINT', () => { // mcp3208 연결해제
+process.on('SIGINT', () => {
+	joyx.close(() => { // mcp3208 연결해제
 		joyy.close(() => {
 			console.log('MCP-ADC가 해제되어,웹서버를 종료합니다');
 			console.log('LED를 끄고 프로그램을 종료합니다.');
@@ -106,6 +107,7 @@ process.on('SIGINT', () => { // mcp3208 연결해제
 			process.exit();
 		});
 	});
+});
 
 const serverbody = (request, response) => {
 	fs.readFile('views/plotly_joy.html', 'utf8', (err, data) => {
