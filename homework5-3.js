@@ -61,7 +61,7 @@ const JoyStick_Light = ( ) => {
 	});
 
 	lightData.read((error, reading)=> {
-		console.log("  (%d)", reading.rawValue);
+		console.log(" 밝기 : (%d)", reading.rawValue);
 		lightvalue = reading.rawValue;
 	});
 
