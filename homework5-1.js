@@ -24,7 +24,7 @@ if (err) console.log('채널1 초기화실패!(HW점검!)');
 const JoyStickCheckButton = ( ) => {
 	let checkButtonData = gpio.digitalRead(JOYBUTTON);
 	if (! checkButtonData) {
-		gpio.digitalWrite(BLUE, 1);
+		gpio.softPwmWrite(BLUE, 1);
 		JoyStick();
 	}
 	setTimeout(JoyStickCheckButton,300);
@@ -39,21 +39,21 @@ const JoyStick = ( ) => {
 
 	if(yvalue<50 || yvalue >4000) {
 		if ((count % 3) == 1) {
-			gpio.digitalWrite(RED, 0);
-			gpio.digitalWrite(GREEN, 0);
-			gpio.digitalWrite(BLUE, 1); 
+			gpio.softPwmWrite(RED, 0);
+			gpio.softPwmWrite(GREEN, 0);
+			gpio.softPwmWrite(BLUE, 1); 
 			count++;
 		}
 		else if ((count % 3) == 2){
-			gpio.digitalWrite(RED, 1);
-			gpio.digitalWrite(GREEN, 0);
-			gpio.digitalWrite(BLUE, 0); 
+			gpio.softPwmWrite(RED, 1);
+			gpio.softPwmWrite(GREEN, 0);
+			gpio.softPwmWrite(BLUE, 0); 
 			count++;
 		}
 		else {
-			gpio.digitalWrite(RED, 0);
-			gpio.digitalWrite(GREEN, 1);
-			gpio.digitalWrite(BLUE, 0); 
+			gpio.softPwmWrite(RED, 0);
+			gpio.softPwmWrite(GREEN, 1);
+			gpio.softPwmWrite(BLUE, 0); 
 			count++;
 		}
 	}
