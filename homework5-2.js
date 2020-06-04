@@ -56,14 +56,14 @@ const JoyStick = ( ) => {
 		count ++;
 
 	if(xvalue < 300){
-		lightvalue = lightvalue - 5;
+		lightvalue = lightvalue - 10;
 		if(lightvalue < 1) {
 			console.log("빛의 세기는 1보다 낮을 수 없습니다.");
 			lightvalue = 1;
 		}
 	}
 	else if(xvalue>3700) {
-		lightvalue = lightvalue + 5;
+		lightvalue = lightvalue + 10;
 		if(lightvalue > 100) {
 			console.log("빛의 세기는 100보다 클 수 없습니다.");
 			lightvalue = 100;
