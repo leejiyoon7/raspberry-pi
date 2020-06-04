@@ -105,7 +105,7 @@ const JoyStick_Light = ( ) => {
 		xvalue = yvalue = lightvalue = -1;
 	}
 
-	timerid = setTimeout(JoyStick, timeout);
+	timerid = setTimeout(JoyStick_Light, timeout);
 }
 
 process.on('SIGINT', () => {
