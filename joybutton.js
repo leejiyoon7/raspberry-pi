@@ -8,11 +8,19 @@ const RED = 27;
 const GREEN = 28;
 const BLUE = 29;
 const CS_MCP3208 = 10 // Chip Enable(CE0) is set
+const VRX = 0 // ADC 0번째 채널선택=아날로그센서
 const VRY = 1 // ADC 1번째 채널선택=아날로그센서
 const SPI_SPEED = 1000000 // Clock Speed = 1Mhz
 var timerid, timeout=800; // 타이머제어용
-var yvalue = -1; // JoyStick Y 측정데이터 저장용
+var xvalue = yvalue = -1; // JoyStick X,Y 측정데이터 저장용
 var count =0;
+
+const joyx = mcpadc.openMcp3208(VRX, // 채널0 지정 (X좌표)
+{ speedHz: SPI_SPEED }, // Clock속도 지정
+(err) => { // Callback함수 등록
+console.log("SPI 채널0 초기화완료!");
+if (err) console.log('채널0 초기화실패!(HW점검!)');
+});
 
 const joyy = mcpadc.openMcp3208(VRY, // 채널1 지정 (Y좌표)
 { speedHz: SPI_SPEED }, // Clock속도 지정
@@ -27,6 +35,7 @@ const JoyStickCheckButton = ( ) => {
 		gpio.digitalWrite(BLUE, 1);
 		JoyStick();
 	}
+	setTimeout(JoyStickCheckButton,300);
 }
 
 const JoyStick = ( ) => {
