@@ -14,7 +14,7 @@ const SPI_SPEED = 1000000 // Clock Speed = 1Mhz
 var timerid, timeout=800; // 타이머제어용
 var xvalue = yvalue = -1; // JoyStick X,Y 측정데이터 저장용
 var count = 1;
-var lightvalue =50;
+var lightvalue = 50;
 
 const joyx = mcpadc.openMcp3208(VRX, // 채널0 지정 (X좌표)
 { speedHz: SPI_SPEED }, // Clock속도 지정
@@ -52,28 +52,20 @@ const JoyStick = ( ) => {
 	});
 
 	if(yvalue<300 || yvalue >3700) {
-		if ((count % 3) == 1) {
-			count++;
-		}
-		else if ((count % 3) == 2){
-			count++;
-		}
-		else {
-			count++;
-		}
+		count ++;
 	}
 
 	if(xvalue<300){
 		lightvalue = lightvalue - 5;
 		if(lightvalue < 1) {
-			console.log("빛의 세기는 1보다 낮을 수 없습니다.")
+			console.log("빛의 세기는 1보다 낮을 수 없습니다.");
 			lightvalue = 1;
 		}
 	}
-	if(xvalue>3700) {
+	else if(xvalue>3700) {
 		lightvalue = lightvalue + 5;
 		if(lightvalue > 100) {
-			console.log("빛의 세기는 100보다 클 수 없습니다.")
+			console.log("빛의 세기는 100보다 클 수 없습니다.");
 			lightvalue = 100;
 		}
 	}
