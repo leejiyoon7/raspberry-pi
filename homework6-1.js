@@ -37,7 +37,7 @@ real_distance = travelTime / 58;
 
 total = total + real_distance;
 filtering_distance = total / count;
-error_distance =10 - filtering_distance;
+error_distance =20 - filtering_distance;
 if(error_distance<0)
 	error_distance = error_distance*(-1);
 
