@@ -43,7 +43,7 @@ if(error_distance<0)
 
 	console.log("근접거리: %d cm",real_distance.toFixed(2));
 		let stamptime = new Date();
-		client.query('INSERT INTO sonic VALUES (?, ?, ?, ?)', [stamptime, real_distance, filtering_distance, error_distance], (err, result) => {
+		client.query('INSERT INTO sonic VALUES (?, ?, ?, ?)', [stamptime, real_distance.toFixed(2), filtering_distance.toFixed(2), error_distance.toFixed(2)], (err, result) => {
 			if (err) {
 				console.log("DB저장실패!");
 				console.log(err);
