@@ -63,7 +63,7 @@ results.forEach(function(element, i) {
 let d = element.stamp, str = '';
 str += d.getFullYear() + '.' + (d.getMonth()+1) + '.' + d.getDate() + ' '; // YYYY.MM.DD
 str += d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds() + '.'; // HH:MM:SS
-str += d.getMilliseconds() + ' ' + element.real_distance + 'cm' + ' ' + element.filtering_distance + 'cm' + ' ' + element.error_distance + 'cm'; // .MMM 6cm
+str += d.getMilliseconds() + ' ' + element.real_distance.toFixed(2) + 'cm' + ' ' + element.filtering_distance.toFixed(2) + 'cm' + ' ' + element.error_distance.toFixed(2) + 'cm'; // .MMM 6cm
 console.log(str);
 });
 if(count == 41)
