@@ -42,9 +42,9 @@ if(error_distance<0)
 			}
 			else console.log("DB에 저장을 했습니다!");
 		}); /* client.query */
-	}
 	count++;
 setTimeout(Triggering, 500);
+}
 
 const Retrieve = function() {
 let stamp_distance;
