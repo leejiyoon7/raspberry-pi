@@ -66,6 +66,8 @@ str += d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds() + '.'; // HH:M
 str += d.getMilliseconds() + ' ' + element.real_distance + 'cm' + ' ' + element.filtering_distance + 'cm' + ' ' + element.error_distance + 'cm'; // .MMM 6cm
 console.log(str);
 });
+if(count == 41)
+		return 0;
 console.log("----------------------------------------");
 setTimeout(Retrieve, 5000); // 5초마다 DB조회 (저장확인)
 }); // client.query( … )
