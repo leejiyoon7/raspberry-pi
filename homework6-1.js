@@ -33,11 +33,11 @@ while(gpio.digitalRead(ECHO) == gpio.LOW) ;
 startTime = gpio.micros();
 while(gpio.digitalRead(ECHO) == gpio.HIGH) ;
 travelTime = gpio.micros() - startTime;
-real_distance = travelTime / 58;
+real_distance.toFixed(2) = travelTime / 58;
 
-total = total + real_distance;
-filtering_distance = total / count;
-error_distance =10 - filtering_distance;
+total.toFixed(2) = total.toFixed(2) + real_distance.toFixed(2);
+filtering_distance.toFixed(2) = total / count;
+error_distance.toFixed(2) =10 - filtering_distance;
 if(error_distance<0)
 	error_distance = error_distance*(-1);
 
