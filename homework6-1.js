@@ -52,7 +52,7 @@ if(error_distance<0)
 		}); /* client.query */
 	count++;
 	if(count == 41)
-		break;
+		return 0;
 setTimeout(Triggering, 500);
 }
 
