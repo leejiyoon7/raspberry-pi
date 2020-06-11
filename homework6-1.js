@@ -14,6 +14,14 @@ password: 'asqwzx11', // 암호
 database: 'sensordb' //사용할 DB명
 });
 
+client.query('TRUNCATE TABLE sonic', (err, result) => {
+			if (err) {
+				console.log("테이블 초기화 실패!");
+				console.log(err);
+			}
+			else console.log("테이블을 초기화  했습니다!");
+		});
+
 const Triggering = function() {
 gpio.digitalWrite (TRIG, gpio.LOW);
 gpio.delayMicroseconds(2)
@@ -47,7 +55,6 @@ setTimeout(Triggering, 500);
 }
 
 const Retrieve = function() {
-let stamp_distance;
 client.query('SELECT * FROM `sonic`', function (error, results, fields) {
 console.log("----------------- 현재까지 DB에 저장된 내용을 출력합니다 ---------------");
 results.forEach(function(element, i) {
