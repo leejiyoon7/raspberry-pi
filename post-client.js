@@ -1,9 +1,9 @@
 const request = require('request');
 var peer2data = {
-	name: "bmlee",
-	age: 89,
-	addr: "성남",
-	tel: "010-222-3333" }
+	name: "jiyoon",
+	age: 24,
+	addr: "인천",
+	tel: "010-7518-0000" }
 
 request.post (
 { url :'http://192.168.0.199:60001/member',
