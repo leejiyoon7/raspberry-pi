@@ -77,5 +77,5 @@ gpio.wiringPiSetup();
 gpio.pinMode(TRIG, gpio.OUTPUT);
 gpio.pinMode(ECHO, gpio.INPUT);
 setImmediate(Triggering); // 실시간 거리측정
-setTimeout(Retrieve, 5000); // DB에서 조회하여 화면출력
+setTimeout(Retrieve, 5000); // 5초뒤부터 DB에서 조회하여 화면출력
 console.log("======================================");
