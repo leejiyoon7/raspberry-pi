@@ -2,8 +2,8 @@ const express = require('express');
 const gpio = require('node-wiring-pi');
 const bodyParser = require('body-parser');
 const app = express();
-const GREEN = 21;
-const RED = 22;
+const RED = 21;
+const GREEN = 22;
 const BLUE = 23;
 var mydata = {
 actid: 'LED3',
