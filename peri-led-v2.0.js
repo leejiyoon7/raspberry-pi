@@ -14,13 +14,13 @@ uuid : CHARACTERISTIC_UUID,
 properties: ['read', 'notify', 'write'],
 value : null
 });
-this._value = ''+0; // 연속 센서데이터
+this._value = '0'; // 연속 센서데이터
 this._updateValueCallback = null; // 활성화 콜백함수
 };
 util.inherits(ApproachCharacteristic, Characteristic);
 // central 기기(예,스마트폰)에서 read request 를 하면, (peripheral 에서) 이 함수가 실행됨
 ApproachCharacteristic.prototype.onReadRequest = (offset, callback) => {
-var data1 = Buffer.from(this._value);
+var data1 = Buffer.from(this._value.toString());
 console.log("블루투스> 데이터1회송신서비스: " + data1);
 callback(this.RESULT_SUCCESS, data1);
 }
