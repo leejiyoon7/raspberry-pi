@@ -81,7 +81,7 @@ bleno.on('advertisingStart', (error) => {
 });
 bleno.on('accept', (addr) => {
 	console.log("블루투스 > 상대편(%s)이 연결을 수락했습니다", addr);
-	setInterval(() => { bleno.updateRssi((error, rssi) = > {
+	setInterval(() => { bleno.updateRssi((error, rssi) => {
 		bleno.setMaxListeners(0); // 최대Listner 개수를 비활성화(0)시켜, 제한을 풀어줍니다.
 		console.log("수신감도(5초마다): 2m이내(-20~-50), 3~7m(-60~-80), 8m이상(-90~-120) > " + rssi);
 	}); }, 5000);
