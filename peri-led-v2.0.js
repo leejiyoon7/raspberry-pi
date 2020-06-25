@@ -104,6 +104,7 @@ gpio.pinMode(LED, gpio.OUTPUT);
 setInterval(() => {
 	analog_data++; // 가상의 아날로그 센서데이터를 측정한다고 가정함(즉, 1초마다 1씩증가시켜 업데이트함)
 	approachCharacteristic._value = analog_data;
+	console.log(approachCharacteristic._value);
 	if (approachCharacteristic._updateValueCallback) {
 		console.log(`블루투스 > 연속데이터 송신: ${approachCharacteristic._value}`);
 		const notificationBytes = Buffer.from(String(approachCharacteristic._value));
