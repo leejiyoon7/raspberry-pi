@@ -15,6 +15,12 @@ bluecolor: 'OFF'
 const led3control = (req, res) => {
 console.log("PUT method로 데이터 수신...");
 if (req.body.actid == 'LED3') {
+	if (req.body.redcolor == 'ON') {
+		gpio.digitalWrite(RED, 1);
+		gpio.digitalWrite(BLUE, 0);
+		gpio.digitalWrite(GREEN, 0);
+		console.log("빨강LED켰음");
+}
 if (req.body.redcolor == 'ON') {
 gpio.digitalWrite(RED, 1);
 gpio.digitalWrite(BLUE, 0);
@@ -31,6 +37,12 @@ if (req.body.bluecolor == 'ON') {
 gpio.digitalWrite(RED, 0);
 gpio.digitalWrite(BLUE, 1);
 gpio.digitalWrite(GREEN, 0);
+console.log("파랑LED켰음");
+}
+if (req.body.bluecolor == 'ON') {
+gpio.digitalWrite(RED, 1);
+gpio.digitalWrite(BLUE, 1);
+gpio.digitalWrite(GREEN, 1);
 console.log("파랑LED켰음");
 }
 res.send("OK");
