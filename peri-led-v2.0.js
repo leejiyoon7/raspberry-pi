@@ -23,7 +23,7 @@ util.inherits(ApproachCharacteristic, Characteristic);
 // central 기기(예,스마트폰)에서 read request 를 하면, (peripheral 에서) 이 함수가 실행됨
 ApproachCharacteristic.prototype.onReadRequest = (offset, callback) => {
 	console.log(this);
-	var data1 = Buffer.from('this._value.toString()');
+	var data1 = Buffer.from(ApproachCharacteristic._value.toString());
 	console.log("블루투스> 데이터1회송신서비스: " + data1);
 	callback(this.RESULT_SUCCESS, data1);
 }
@@ -54,6 +54,7 @@ ApproachCharacteristic.prototype.onUnsubscribe = (maxValueSize, updateValueCallb
 	console.log("-------------------------------------------------------------------");
 	this._updateValueCallback = null; // 연속적으로 송신하는 콜백함수를 비활성화시킴
 };
+
 bleno.on('stateChange', (state) => {
 	if (state == 'poweredOn') {
 		bleno.startAdvertising(nodename, [SERVICE_UUID]);
@@ -99,6 +100,7 @@ process.on('SIGINT', () => {
 	console.log("\n블루투스> 프로그램을 종료합니다");
 	process.exit();
 });
+
 gpio.wiringPiSetup();
 gpio.pinMode(LED, gpio.OUTPUT);
 setInterval(() => {
