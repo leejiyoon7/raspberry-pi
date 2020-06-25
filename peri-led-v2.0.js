@@ -23,7 +23,7 @@ util.inherits(ApproachCharacteristic, Characteristic);
 // central 기기(예,스마트폰)에서 read request 를 하면, (peripheral 에서) 이 함수가 실행됨
 ApproachCharacteristic.prototype.onReadRequest = (offset, callback) => {
 	console.log(this._value);
-	var data1 = Buffer.from(this._value.toString());
+	var data1 = Buffer.from(this._value);
 	console.log("블루투스> 데이터1회송신서비스: " + data1);
 	callback(this.RESULT_SUCCESS, data1);
 }
