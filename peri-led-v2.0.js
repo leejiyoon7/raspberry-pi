@@ -83,15 +83,15 @@ bleno.setMaxListeners(0); // 최대Listner 개수를 비활성화(0)시켜, 제�
 console.log("수신감도(5초마다): 2m이내(-20~-50), 3~7m(-60~-80), 8m이상(-90~-120) > " + rssi);
 }); } , 5000);
 });
-Bleno.on(＇disconnect＇, (addr) => {
-console.log(＂블루투스 > 상대편(%s)이 연결을 끊었습니다＂,addr);
+Bleno.on('disconnect', (addr) => {
+console.log("블루투스 > 상대편(%s)이 연결을 끊었습니다",addr);
 });
-Bleno.on(＇servicesSet＇, (err) => {
+Bleno.on('servicesSet', (err) => {
 if (!err)
-console.log(＂블루투스> 상대에게 보낼ServiceProfile을 생성합니다＂);
+console.log("블루투스> 상대에게 보낼ServiceProfile을 생성합니다");
 });
-Process.on(＇SIGINT＇, ( ) => {
-console.log(＂\n블루투스> 프로그램을 종료합니다＂);
+Process.on('SIGINT', ( ) => {
+console.log("\n블루투스> 프로그램을 종료합니다");
 process.exit();
 });
 Gpio.wiringPiSetup();
