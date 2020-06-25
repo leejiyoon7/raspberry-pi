@@ -23,7 +23,7 @@ util.inherits(ApproachCharacteristic, Characteristic);
 // central 기기(예,스마트폰)에서 read request 를 하면, (peripheral 에서) 이 함수가 실행됨
 ApproachCharacteristic.prototype.onReadRequest = (offset, callback) => {
 	console.log(this);
-	var data1 = Buffer.from(ApproachCharacteristic._value.toString());
+	var data1 = Buffer.from(String(this._value));
 	console.log("블루투스> 데이터1회송신서비스: " + data1);
 	callback(this.RESULT_SUCCESS, data1);
 }
@@ -66,6 +66,7 @@ bleno.on('stateChange', (state) => {
 		console.log("블루투스 > Advertising 을 중단합니다");
 	}
 });
+
 const approachCharacteristic = new ApproachCharacteristic();
 bleno.on('advertisingStart', (error) => {
 	if (!error) {
@@ -81,6 +82,7 @@ bleno.on('advertisingStart', (error) => {
 	else
 		console.log("블루투스 > Advertising 도중 오류발생");
 });
+
 bleno.on('accept', (addr) => {
 	console.log("블루투스 > 상대편(%s)이 연결을 수락했습니다", addr);
 	setInterval(() => { bleno.updateRssi((error, rssi) => {
@@ -88,9 +90,11 @@ bleno.on('accept', (addr) => {
 		console.log("수신감도(5초마다): 2m이내(-20~-50), 3~7m(-60~-80), 8m이상(-90~-120) > " + rssi);
 	}); }, 5000);
 });
+
 bleno.on('disconnect', (addr) => {
 	console.log("블루투스 > 상대편(%s)이 연결을 끊었습니다", addr);
 });
+
 bleno.on('servicesSet', (err) => {
 	if (!err)
 		console.log("블루투스> 상대에게 보낼ServiceProfile을 생성합니다");
