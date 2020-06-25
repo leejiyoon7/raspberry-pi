@@ -15,7 +15,7 @@ const ApproachCharacteristic = function() {
 	properties : ['read', 'notify', 'write'] ,
 	value : null
 		});
-	this._value = 0; // 연속 센서데이터
+	this._value = 35; // 연속 센서데이터
 	this._updateValueCallback = null; // 활성화 콜백함수
 };
 
