@@ -90,12 +90,13 @@ bleno.on('servicesSet', (err) => {
 if (!err)
 console.log("블루투스> 상대에게 보낼ServiceProfile을 생성합니다");
 });
-Process.on('SIGINT', ( ) => {
+
+process.on('SIGINT', ( ) => {
 console.log("\n블루투스> 프로그램을 종료합니다");
 process.exit();
 });
-Gpio.wiringPiSetup();
-Gpio.pinMode(LED, gpio.OUTPUT);
+gpio.wiringPiSetup();
+gpio.pinMode(LED, gpio.OUTPUT);
 setInterval( ( )=>{
 analog_data++; // 가상의 아날로그 센서데이터를 측정한다고 가정함(즉, 1초마다 1씩증가시켜 업데이트함)
 approachCharacteristic._value = analog_data;
