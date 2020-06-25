@@ -54,7 +54,7 @@ ApproachCharacteristic.prototype.onUnsubscribe = (maxValueSize, updateValueCallb
 	this._updateValueCallback = null; // 연속적으로 송신하는 콜백함수를 비활성화시킴
 };
 bleno.on('stateChange', (state) => {
-	if (state == = 'poweredOn') {
+	if (state == 'poweredOn') {
 		bleno.startAdvertising(nodename, [SERVICE_UUID]);
 		console.log("----------------------------------------------------");
 		console.log("블루투스 > ON (" + nodename + " 가동)");
