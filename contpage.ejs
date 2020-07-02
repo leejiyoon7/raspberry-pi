@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<body bgcolor=yellow>
+<h2 align=center> 임베디드 액츄레이터 제어 </h2>
+<p> <table border=0 width=500 cellspacing=10>
+<tr>
+<td align=right> LED1 </td>
+<td align=right> <a href="led1/1"> ON </a></td>
+<td> <a href="led1/0"> OFF </a></td>
+<td> <font color= <%= led1color%> > ● </font></td>
+</tr>
+<tr>
+<td align=right> Buzzer </td>
+<td align=right> <a href="buzzer/1"> ON </a></td>
+<td> <a href="buzzer/0"> OFF </a></td>
+<td> <font color= <%= buzzercolor %> > ● </font></td>
+</tr>
+<tr>
+<td align=right> LED3 </td>
+<td align=right> ON(<a href="led3/11">R</a>
+<a href="led3/10">G</a>
+<a href="led3/21">B</a>)</td>
+<td> OFF(<a href="led3/20">R</a>
+<a href="led3/31">G</a>
+<a href="led3/30">B</a>) </td>
+<td> <font color=#ff0000>●</font>
+<font color=#00ff00>●</font>
+<font color=#b0b0b0>●</font> </td>
+</tr>
+</table>
+</p> 
+<hr>
+<h2 align=center>
+<font color=brown> 임베디드 센서 제어 </font>
+</h2>
+<p> <table border=0 width=450 cellspacing=10>
+<tr>
+<td align=right> 광센서 </td>
+<td> <a href="light/1"> 측정시작 </a></td>
+<td> <a href="light/0"> 측정중단 </a></td>
+<td> <a href="light/2" target=_new> 측정값보기 </a></td>
+<td> <font color= %= <lightcolor %> > ● </font></td>
+</tr>
+<tr>
+<td align=right> 소리센서 </td>
+<td> 측정시작 </td>
+<td> 측정중단 </td>
+<td> 측정값보기 </td>
+<td> <font color=#bfbfbf> ● </font></td>
+</tr>
+</table>
+</p>
+</body>
+</html>

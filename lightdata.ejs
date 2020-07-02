@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>광센서 측정결과</title>
+</head>
+<body>
+<h2> 광센서 측정값 조회 </h2>
+<p>측정시작부터 측정된 값을 보여줍니다.
+(0은 밝음, 1은 어두움) </p>
+<hr>
+<table>
+<tr>
+<% lightdata.forEach( function(element, i) { %>
+<td color=red> <%= element %> </td>
+<% }); %>
+</tr> </table>
+</body>
+</html>
